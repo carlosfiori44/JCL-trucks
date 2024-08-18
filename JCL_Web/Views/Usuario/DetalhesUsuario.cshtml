@@ -1,0 +1,74 @@
+﻿@model JCL_Web.Models.Usuario
+
+@{
+    ViewBag.Title = "DetalhesUsuario";
+}
+
+<h2>DetalhesUsuario</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Senha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Senha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Regiao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Regiao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\JCL_Web",
+    "\\JCL_Web\\Controllers",
+    "\\JCL_Web\\Models",
+    "\\JCL_Web\\Views",
+    "\\JCL_Web\\Views\\Home",
+    "\\JCL_Web\\Views\\Shared"
+  ],
+  "SelectedNode": "\\JCL_Web\\Controllers\\HomeController.cs",
+  "PreviewInSolutionExplorer": false
+}

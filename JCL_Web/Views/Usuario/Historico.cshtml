@@ -1,0 +1,56 @@
+﻿@model IEnumerable<JCL_Web.Models.Historico>
+
+@{
+    ViewBag.Title = "Histórico";
+}
+
+<h2>Histórico</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Ação
+        </th>
+        <th>
+            Funcionario
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Data - Hora
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if (Session["id_usuario"].Equals(item.IdFunc) || Session["tipo_usuario"].Equals("gerente"))
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Acao)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NomeFunc)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EmailFunc)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DataHisto)
+    </td>
+</tr>
+    }
+}
+
+</table>
+
+<style>
+    h2{
+        margin-top: 30px;
+
+    }
+    table{
+        margin-top: 20px;
+    }
+</style>

@@ -1,0 +1,162 @@
+﻿@model JCL_Web.Models.Produto
+
+@{
+    ViewBag.Title = "Produto";
+}
+@Html.AntiForgeryToken()
+<body>
+    <div class="form-horizontal">
+        <div class="title">
+            <h2>Cadastrar Produto</h2>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @using (Html.BeginForm())
+        {
+            <div class="formulario">
+                <div class="column1">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", Required = "true" } })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control", Required = "true" } })
+                            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Preco, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Preco, new { htmlAttributes = new { @class = "form-control2", Required = "true" } })
+                            @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Quantidade, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Quantidade, new { htmlAttributes = new { @class = "form-control3", Required = "true", type = "text" } })
+                            @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Cadastrar" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+</body>
+
+<style>
+    body {
+        background-color: #F2F0F0;
+    }
+
+    .form-horizontal {
+        display: flex;
+        border: 1px solid #C0C0C0;
+        width: 100%;
+        border-radius: 15px;
+        position: relative;
+        background-color: white;
+        border: 0;
+        box-shadow: 5px 12px 32px #888888;
+        margin-top: 80px;
+    }
+
+    .title {
+        background-color: #BA1D1D;
+        position: absolute;
+        height: 50px;
+        width: 100%;
+    }
+
+    .formulario {
+        margin-top: 100px;
+        display: flex;
+    }
+
+    .column1 {
+        float: left;
+        margin-left: 20px;
+    }
+
+    .column2 {
+        margin-left: 80px;
+    }
+
+    h2 {
+        font-size: 28px;
+        color: white;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-weight: bold;
+        text-align: left;
+        margin-left: 20px;
+        padding-bottom: 30px;
+        padding-top: 16px;
+    }
+
+    .form-control {
+        width: 500px;
+        background-color: transparent;
+        border: none;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        border-bottom: 1px solid #C0C0C0;
+        background-image: url('searchicon.png');
+    }
+
+    .form-control2 {
+        width: 100px;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid #C0C0C0;
+    }
+
+    .form-control3 {
+        width: 80px;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid #C0C0C0;
+    }
+
+    label {
+        color: #BA1D1D;
+        position: relative;
+    }
+
+    .form-group {
+        margin-top: 15px;
+    }
+
+    input[type="submit"] {
+        width: 130px;
+        cursor: pointer;
+        background: rgb(169,169,169, 0.7);
+        padding: 5px 5px;
+        color: #fff;
+        font-size: 18px;
+        border: 1px solid #fff;
+        margin-bottom: 10px;
+        text-shadow: 0 1px 1px #333;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        transition: all 0.2s linear;
+    }
+
+        input[type="submit"]:hover {
+            color: #fff;
+            background: #BA1D1D;
+        }
+</style>

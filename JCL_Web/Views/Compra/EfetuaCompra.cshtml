@@ -1,0 +1,128 @@
+﻿@model JCL_Web.Models.Compra
+
+@{
+    ViewBag.Title = "EfetuaCompra";
+}
+
+<h2>Compra</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            Cliente
+            <div class="col-md-10">
+                <select name="Id_cliente" class="custom-select" style="width:200px;">
+                    <option selected disabled>Selecione o Cliente</option>
+                    @foreach (var item in (List<JCL_Web.Models.Usuario>)Session["listaCli"])
+                    {
+                        if (item.Regiao.Equals(JCL_Web.Models.Usuario.VerificarRegiao(Session["id_usuario"].ToString())))
+                        {
+                            <option value="@item.Id">@item.Nome</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            Produto
+            <div class="col-md-10">
+                <select name="Id_produto" class="custom-select" style="width:200px;">
+                    <option selected disabled>Selecione o produto</option>
+                    @foreach (var item in (List<JCL_Web.Models.Produto>)Session["listaPro"])
+                    {
+                        <option value="@item.Id">@item.Nome</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantidade, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantidade, new { htmlAttributes = new { @class = "form-control", Required = "true" } })
+                @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Relatorio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Relatorio, new { htmlAttributes = new { @class = "form-control", Required = "true" } })
+                @Html.ValidationMessageFor(model => model.Relatorio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Finalizar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Inicio", "Index")
+</div>
+
+<style>
+    .custom-select {
+        position: relative;
+        font-family: Arial;
+    }
+
+        .custom-select select {
+            display: none;
+        }
+
+    .select-selected {
+        background-color: DodgerBlue;
+    }
+
+        .select-selected:after {
+            position: absolute;
+            content: "";
+            top: 14px;
+            right: 10px;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            border-color: #fff transparent transparent transparent;
+        }
+
+        .select-selected.select-arrow-active:after {
+            border-color: transparent transparent #fff transparent;
+            top: 7px;
+        }
+
+    .select-items div, .select-selected {
+        color: #ffffff;
+        padding: 8px 16px;
+        border: 1px solid transparent;
+        border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+        cursor: pointer;
+    }
+
+    .select-items {
+        position: absolute;
+        background-color: DodgerBlue;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 99;
+    }
+
+    .select-hide {
+        display: none;
+    }
+
+    .select-items div:hover, .same-as-selected {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+</style>

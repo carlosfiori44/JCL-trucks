@@ -1,0 +1,25 @@
+﻿@model JCL_Web.Models.Compra
+
+@{
+    ViewBag.Title = "Relatorio";
+}
+
+<h2>Relatorio</h2>
+
+<table class="table">
+    <tr>      
+        <th>
+            @Html.DisplayNameFor(model => model.Relatorio)
+        </th>       
+        <th></th>
+    </tr>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Relatorio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Relatorio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+</table>

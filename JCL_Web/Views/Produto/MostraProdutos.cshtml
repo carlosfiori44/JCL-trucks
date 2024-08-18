@@ -1,0 +1,76 @@
+﻿@model IEnumerable<JCL_Web.Models.Produto>
+
+@{
+    ViewBag.Title = "MostraProdutos";
+}
+
+<h2>Produtos</h2>
+
+<p class="botaoNovo">
+     @Html.ActionLink("Novo +", "CadastraProduto", new { @class = "btnNovo" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desconto)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+               R$@Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desconto)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditarProduto", new { id = item.Id }, htmlAttributes: new { @id = "bntEd" })
+            </td>
+        </tr>
+    }
+</table>
+
+<style>
+    #bntEd {
+        color: black;
+        font-size: 17px;
+    }
+
+    #bntEd:hover {
+        color: black;
+        font-size: 17px;
+    }
+    .btnNovo{
+        color: black;
+    }
+    .botaoNovo{
+        color: black;
+    }
+    h2{
+        margin-top: 30px;
+    }
+</style>
+

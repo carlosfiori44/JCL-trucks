@@ -1,0 +1,176 @@
+﻿@model JCL_Web.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+}
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <!--FORMULÁRIO DE LOGIN-->
+            <div id="login">
+                <form>
+                    <div class="row">
+
+                        <div class="column1">
+                            <div>
+                                <h2>Acesse sua conta</h2>
+                                <p>
+                                    Para ter acesso ao seu perfil, por favor
+                                    faça login com suas informações pessoas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="column2">
+                            <h4>Login</h4>
+
+                            <hr />
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", Type = "email", Required = "true", Placeholder = "Digite seu e-mail" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control", type = "password", minlength = "8", Required = "true", Placeholder = "Digite sua senha" } })
+                                    @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Entrar" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+
+    <div>
+        <a class="action-voltar"> @Html.ActionLink("Voltar", "Index") </a>
+    </div>
+</body>
+
+<style>
+    body {
+        background-color: #F2F0F0;
+        position: relative;
+    }
+
+    .row {
+        height: 240px;
+        display: table;
+        margin-top: 80px;
+        margin-block-end: 80px;
+    }
+
+    .column1 {
+        background-color: #BA1D1D;
+        float: left;
+        width: 50%;
+        border-start-start-radius: 20px;
+        border-end-start-radius: 20px;
+        height: 100%;
+    }
+
+    h2 {
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        padding: 10px 10px;
+        margin-top: 100px;
+    }
+
+    p {
+        color: white;
+        text-align: center;
+        padding: 0 50px;
+    }
+
+    .column2 {
+        float: right;
+        width: 50%;
+        background-color: white;
+        border-end-end-radius: 20px;
+        border-start-end-radius: 20px;
+    }
+
+    .form-horizontal {
+        width: 600px;
+        margin: 0px auto;
+        position: relative;
+        border-radius: 20px;
+        z-index: 2;
+        border: 0;
+        box-shadow: 5px 12px 32px #888888;
+    }
+
+    h4 {
+        font-size: 28px;
+        color: #BA1D1D;
+        text-shadow: 2px 2px 5px #b2b2b2;
+        font-family: Arial,sans-serif;
+        font-weight: bold;
+        text-align: center;
+        padding-bottom: 30px;
+        margin-top: 24px;
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 15px;
+        z-index;
+        2;
+    }
+
+    label {
+        color: #696969;
+        position: relative;
+    }
+
+    input {
+        outline: none;
+    }
+
+    .action-voltar {
+        z-index: 2;
+    }
+
+    input[type="submit"] {
+        width: 100% !important;
+        cursor: pointer;
+        background: rgb(169,169,169, 0.7);
+        padding: 8px 5px;
+        color: #fff;
+        font-size: 20px;
+        border: 1px solid #fff;
+        margin-bottom: 10px;
+        text-shadow: 0 1px 1px #333;
+        -webkit-border-radius: 5px;
+        border-radius: 25px;
+        transition: all 0.2s linear;
+    }
+
+        input[type="submit"]:hover {
+            color: #fff;
+            background: #BA1D1D;
+        }
+
+    .form-control {
+        background-color: transparent;
+        border-radius: 20px;
+    }
+</style>

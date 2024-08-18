@@ -1,0 +1,76 @@
+﻿@model IEnumerable<JCL_Web.Models.Compra>
+
+@{
+    ViewBag.Title = "Compras";
+}
+
+<h2>Compras</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Valor
+        </th>
+        <th>
+            Produto
+        </th>
+        <th>
+            Funcionário
+        </th>
+        <th>
+            Cliente
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Relatorio)
+        </th>
+        <th>
+            Data/Hora
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                R$@Html.DisplayFor(modelItem => item.ValorCompra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeProd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeFunc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeClien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.ActionLink("Relátorio", "MostraRelatorio", new { id = item.Id_compra }, htmlAttributes: new { @id = "bntEd" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status) 
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<style>
+    #bntEd {
+        color: black;
+        font-size: 17px;
+    }
+</style>

@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <title>@ViewBag.Title - JCL Trucks</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="@Url.Action("Index","Home")"> <img src="~/Content/imagens/JCL (3).png" /></a>
+            </div>
+
+            <button type="button" class="navbar-toggle right" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"><i class="fas fa-bars"></i></span>
+            </button>
+
+            <div class="navbar-collapse collapse right">
+                <ul class="nav navbar-nav">
+                    @if (Session["tipo_usuario"] == null)
+                    {
+                        <li><a class="action-link" id="alink">@Html.ActionLink("Login", "PaginaLogin", "Home")</a></li>
+                    }
+
+                    @if (Session["tipo_usuario"] != null)
+                    {
+                        if (Session["tipo_usuario"].Equals("gerente"))
+                        {
+                            <div class="navbarheader">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+
+                                <div class="dropdown">
+                                    <button class="dropbtn"> Cadastrar</button>
+                                    <div class="dropdown-content">
+
+                                        @Html.ActionLink("Cadastrar Produto", "CadastraProduto", "Produto", new { area = "" }, new { @class = "navbar-brand" })
+                                        @Html.ActionLink("Cadastrar Funcionario", "CadastraUsuario", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
+
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="dropbtn"> Listar</button>
+                                    <div class="dropdown-content">
+
+                                        @Html.ActionLink("Listar Produtos", "MostraProdutos", "Produto", new { area = "" }, new { @class = "navbar-brand" })
+                                        @Html.ActionLink("Listar Usuarios", "MostraUsuario", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
+                                        @Html.ActionLink("Listar Compras", "MostraCompras", "Compra", new { area = "" }, new { @class = "navbar-brand" })
+
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="dropbtn">
+                                        @Html.ActionLink("Histórico", "Historico", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
+                                    </button>
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="dropbtn">
+                                        @Html.ActionLink("Alterar Senha", "MudarSenha", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        }
+
+                        if (Session["tipo_usuario"].Equals("funcionario"))
+                        {
+                            <div class="navbarheader">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+
+                                <div class="dropdown">
+                                    <button class="dropbtn"> Cadastrar</button>
+                                    <div class="dropdown-content">
+
+                                        @Html.ActionLink("Cadastrar Cliente", "CadastraUsuario", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
+
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="dropbtn"> Listar</button>
+                                    <div class="dropdown-content">
+
+                                        @Html.ActionLink("Listar Clientes", "MostraUsuario", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
+                                        @Html.ActionLink("Listar Compras", "MostraCompras", "Compra", new { area = "" }, new { @class = "navbar-brand" })
+
+                                    </div>
+                                </div>
+
+
+                                <div class="dropdown">
+                                    <button class="dropbtn">
+
+                                        @Html.ActionLink("Fazer Compra", "EfetuaCompra", "Compra", new { area = "" }, new { @class = "navbar-brand" })
+
+                                    </button>
+                                </div>
+
+
+                                <div class="dropdown">
+                                    <button class="dropbtn">
+                                        @Html.ActionLink("Alterar Senha", "MudarSenha", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    }
+                </ul>
+            </div>
+
+            @if (Session["tipo_usuario"] != null)
+            {
+                <div class="perfil">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink(Session["nomeUsu"].ToString().ToUpper(), "Perfil", "Usuario")</li>
+                        <li>@Session["emailUsu"]</li>
+                        <li><a class="action-link" id="alink">@Html.ActionLink("Sair", "SairLogin", "Home")</a></li>
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <div class="perfil">
+                    <ul class="nav navbar-nav">
+                        <li><a class="action-link" id="alink">@Html.ActionLink("Login", "PaginaLogin", "Home")</a></li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <p id="Esconder" style="background-color: black; color: white;">@TempData["msg"]</p>
+
+        @RenderBody()
+
+        <hr />
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("script", required: false)
+
+    <script>
+        $(document).ready(function () {
+            $('#Esconder').delay(2000).fadeOut();
+            $('#telefone').mask('(00) 00000-0000');
+        });
+    </script>
+
+</body>
+
+<style>
+
+    .dropbtn {
+        background-color: #BA1D1D;
+        color: white;
+        padding: 16px;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #f1f1f1
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: rgba(139,0,0,0.4);
+        color: black;
+    }
+
+    .navbarheader {
+        padding-right: 200px;
+    }
+
+    .perfil {
+        padding: 0;
+        position: absolute;
+        right: 50px;
+    }
+
+    .right {
+        float: right;
+    }
+
+    .iconUsu {
+        height: 50px;
+    }
+
+    .icon-bar {
+        font-size: 24px;
+    }
+
+    .navbar-header img {
+        height: 100px;
+        width: 280px;
+    }
+
+    .navbar-toggle {
+        background-color: transparent;
+        border: 0;
+        float: right;
+        color: white;
+    }
+
+    span {
+        color: white;
+    }
+
+        span:hover {
+            color: black;
+        }
+
+    .navbar-collapse {
+        float: right;
+    }
+
+    .navbar-nav {
+        float: right;
+        color: white;
+        text-decoration: none;
+        text-align: right;
+    }
+
+    .navbar-header {
+        color: red;
+    }
+
+
+    a {
+        color: white;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+        a:hover {
+            color: black;
+            text-decoration: underline;
+        }
+
+    .container {
+        z-index: 2;
+    }
+
+    .navbar-fixed-top {
+        background-color: #BA1D1D;
+    }
+</style>
+</html>

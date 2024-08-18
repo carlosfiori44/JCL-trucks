@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<body>
+    <div class="text-body">
+
+        <h3>Seja bem vindo!</h3>
+        <p>
+            @if(Session["tipo_usuario"] == null)
+            {
+                <p>Para ter acesso às funções e informações disponíveis nesse site, por favor faça seu login</p>
+            }
+            else{
+                <p>@Session["nomeUsu"].ToString()!</p>
+            }
+        </p>
+    </div>
+
+</body>
+
+<style>
+    body {
+        background-image: url('https://www.supplychainmagazine.pt/wp-content/uploads/2019/04/Cami%C3%B5es.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+       
+    }
+
+    .text-body {
+        margin-top: 200px;
+        text-align: center;
+    }
+
+    h3 {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: white;
+        font-size: 48px;
+    }
+
+    p {
+        color: white;
+        font-size: 18px;
+        margin-block-end: 100px;
+    }
+</style>
